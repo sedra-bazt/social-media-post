@@ -1,0 +1,10 @@
+body{
+    background: #f0ecff;
+}
+#add-post-btn{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    box-shadow: 0 5px 10px rgb(0, 10, 0, 0.2);
+   
+}

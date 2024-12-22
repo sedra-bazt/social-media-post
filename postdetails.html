@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postDetails</title>
+    <link rel="stylesheet" href="csss/bootstrap.min.css">
+    <link rel="stylesheet" href="csss/bootstrap.min.css.map">
+    <link rel="stylesheet" href="csss/all.min.css">
+    <link rel="stylesheet" href="csss/main.css">
+    <title>Document</title>
+
+    <script src="node_modules/axios/dist/axios.min.js"></script>
+</head>
+<body>
+     <!--  start modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">username:</label>
+              <input type="text" class="form-control" id="recipient-name" value="sedrabb">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">password:</label>
+              <input type="password" class="form-control" id="recipient-pass" value="sedra&2000">
+            </div>
+            
+            
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="s-log">login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  end modal -->
+
+
+<!-- start regester modal -->
+
+
+<div class="modal fade" id="rigestermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Rigester</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="name-rigester" class="col-form-label"> Name:</label>
+            <input type="text" class="form-control" id="name-rigester" placeholder="Name" >
+          </div>
+          <div class="mb-3">
+            <label for="usernam-rigester" class="col-form-label">username:</label>
+            <input type="text" class="form-control" id="usernam-rigester" >
+          </div>
+       
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">password:</label>
+            <input type="password" class="form-control" id="rigester-pass" >
+          </div>
+          <div class="mb-3">
+            <input type="file" id="rigester-img">
+
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="s-rigester">Rigester</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ens regester modal -->
+ <!-- alert -->
+
+ <div id="success-alert",class="bg-primary " style="position: fixed; z-index: 9999999; right: 0; width:30% ; bottom: 0 ;"></div>
+
+ <!-- alert -->
+
+<!-- start modal createpost -->
+<div class="modal fade" id="creatpostmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">title</label>
+              <input type="text" class="form-control" id="titlemodal" >
+            </div>
+            <div class="mb-3">
+              <textarea name="" id="body-post" class="w-100" style="height: 100px; border-color:gray ; border-radius: 10px;"></textarea>
+            </div>
+  
+            <div class="mb-3">
+              <input type="file" name="" id="image-post">
+            </div>
+  
+           
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="p-create">create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- end modal createpost -->
+    <!-- start nav -->
+     
+    <div class="container  " style="height: 100px;">
+        <div class="d-flex justify-content-center">
+            <div class="col-9">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-body rounded pt-2">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="index.html">Tarmeez</a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link"  onclick="profileClicked()"  style="cursor: pointer;">profile</a>                          </li>
+                        </ul>
+                        <div class=" d-flex w-100 justify-content-end  w-100 " >
+                            <button type="button" class="btn btn-outline-success me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" id="log">login</button>
+                            <button type="button" class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#rigestermodal" data-bs-whatever="@mdo" id="rigester">rigester</button>
+                        </div>
+                        <div class=" d-flex justify-content-end align-items-end w-100 " style="margin-right: 20px;" >
+                          <p class=" pe-3" id="name-profile"></p>
+                          <img src=""  alt="" style="width: 55px; height: 55px; border-radius: 50%;" id="img-profile">
+                        </div>
+                        <button type="button" class="btn btn-outline-danger" id="logout" >logout</button>
+                      </div>
+                    </div>
+                    
+                  </nav>
+    
+            </div>
+        </div>
+      
+       
+
+    </div>
+    <!-- end nav -->
+
+
+
+   
+
+    <!-- post user -->
+     <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-9">
+                <h3 >
+                   <span id="name-post">sedra</span> 
+                    post
+                </h3>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-9">
+              <div id="mypost">
+                <div class="card mt-5 shadow">
+                  <div class="card-header">
+                   <img class=" rounded-circle border border-secondary" src="" alt="" style="width: 40px; height: 40px;" id="tt">
+                   <span class="text-black-50" id="span">@sedra</span>
+                  </div>
+                  <div class="card-body">
+                    <img class="w-100" src="" alt="" id="img"  >
+                    <h6 class="text-black-50 pt-2" id="cr"></h6>
+                    <h5 class="card-title">hello world</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut similique eaque quia reiciendis voluptas? Minima, laboriosam inventore magnam veniam voluptates laudantium excepturi voluptate ab alias, repellendus pariatur. Quasi, repudiandae voluptatem?</p>
+                    <hr>
+                    <div>
+                      <i class="fas fa-pen"></i>
+                      <span>(3) comments</span>
+                      <!-- <div class="d-inline ms-2"> 
+                        <span class="bg-secondary px-3 py-2 rounded-pill text-light ms-2"></span>
+                        <span class="bg-secondary px-3 py-2 rounded-pill text-light ms-2"></span>
+                        <span class="bg-secondary px-3 py-2 rounded-pill text-light ms-2"></span>
+                      </div> -->
+                     
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+                 
+            </div>
+            
+        </div>
+     </div>
+
+
+    <!-- post user -->
+    
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/all.min.js"></script>
+   
+     <script>
+        
+        const baseurl='https://tarmeezacademy.com/api/v1/';
+
+        const urlparams=new URLSearchParams(window.location.search)
+        
+        const id=  urlparams.get("id")
+        console.log(id)
+        let title="";
+        setupUrl()
+        getpost()
+        function getpost(){
+          axios.get(`${baseurl}posts/${id}`)
+        .then((response)=>{
+          document.getElementById("mypost").innerHTML=""
+          const post=response.data.data
+          const comments=post.comments
+          // console.log(comments.body)
+          const name=post.author.name
+          document.getElementById("name-post").innerHTML=name
+          console.log(response.data.data)
+          let commentContent=``
+          for(comment of comments ){
+            commentContent+=` 
+           
+    <img src="${comment.author.profile_image}" class="rounded-circle" alt="" style="width: 50px;height: 50px;">
+     <b>@${comment.author.username}</b>
+            <div class="p-3" style="background-color: rgb(235,235,235);">
+            <div>
+              
+           
+            </div>
+
+            <div>${comment.body}</div>
+
+            
+            
+         
+            </div>
+          
+            `
+          }
+          let info=    ` <div class="card mt-5 shadow">
+                <div class="card-header">
+                 <img class=" rounded-circle border border-secondary" src="${post.author}" alt="" style="width: 40px; height: 40px;" id="tt">
+                 <span class="text-black-50" id="span">@${post.author.username}</span>
+                </div>
+                <div class="card-body">
+                  <img class="w-100" src="${post.image}" alt="" id="img"  >
+                  <h6 class="text-black-50 pt-2" id="cr">${post.created_at}</h6>
+                  <h5 class="card-title">${post.title || title}</h5>
+                  <p class="card-text">${post.body}</p>
+                  <hr>
+                  <div>
+                    <i class="fas fa-pen"></i>
+                    <span>(${post.comments_count}) comments</span>
+                   
+                  </div>
+                </div>
+                <div id="comment"> ${commentContent}</div>
+              <div class="input-group mb-3" id=add-comment>
+                <input id="coment-input" type="text" placeholder="add your comment here" style="width:calc(100% - 15%); border:none">
+                <button class="btn btn-outline-primary" type="btn" onclick="creatcomment()">send</button>
+                </div>
+              </div>`
+              
+              
+              document.getElementById("mypost").innerHTML=info
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
+        }
+
+
+
+        function creatcomment(){
+         let mycomment= document.getElementById("coment-input").value;
+         let params={
+          "body":mycomment,
+         }
+          let token=localStorage.getItem("token");
+          console.log(token)
+          let url=`${baseurl}posts/${id}/comments`;
+          axios.post(url,params,{
+            headers:{
+              "authorization":`Bearer ${token}`
+            }
+          })
+          .then((respone)=>{
+            console.log(respone.data)
+            getpost()
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+
+
+        }
+
+          document.getElementById("s-log").addEventListener("click",(e)=>{  
+      login()
+    })
+     
+  
+   function login(){
+    let name= document.getElementById("recipient-name").value;
+    let pass= document.getElementById("recipient-pass").value;
+    const bodyParams={
+      username:name,
+      password:pass,
+    }
+    const url=`${baseurl}login`;
+    axios.post(url,bodyParams)
+    .then((response)=>{
+      localStorage.setItem("token",response.data.token);
+      localStorage.setItem("user",JSON.stringify(response.data.user));
+      const modal=document.getElementById("exampleModal");
+      const modalaInstance=bootstrap.Modal.getInstance(modal);
+      modalaInstance.hide();
+      showAlertsuccess("logged in",'success');
+      setupUrl()
+    })
+    .catch((error)=>{
+      
+      console.log(error)
+    })
+   }
+   document.getElementById("s-rigester").addEventListener("click",(e)=>{
+    register()
+   })
+   function register(){
+   const namerigester=document.getElementById("name-rigester").value
+   const usernamerigester=document.getElementById("usernam-rigester").value
+   const passigester=document.getElementById("rigester-pass").value
+   let imag=document.getElementById("rigester-img").files[0];
+
+    const url=`${baseurl}register`
+   console.log(namerigester, usernamerigester, passigester)
+    let formdata=new FormData();
+    formdata.append("username",usernamerigester)
+    formdata.append("password",passigester)
+    formdata.append("image",imag)
+    formdata.append("name",namerigester)
+
+
+  //  const paramsregester={
+  //   username:usernamerigester,
+  //   password:passigester,
+  //   name:namerigester,
+  //  }
+   axios.post(url,formdata,{
+    headers:{
+      "Content-Type":"multipart/form-data"
+    }
+   })
+   .then((response)=>{
+     localStorage.setItem("token",response.data.token);
+     localStorage.setItem("user",JSON.stringify(response.data.user));
+     console.log(response.data)
+     const modal=document.getElementById("rigestermodal");
+     const modalaInstance=bootstrap.Modal.getInstance(modal);
+     modalaInstance.hide();
+     showAlertsuccess("rigester anew user",'success');
+     setupUrl();
+   })
+   .catch((error)=>{
+    const message=error.response.data.message
+    showAlertsuccess(message,"danger")
+   })
+   }
+    function setupUrl(){
+      let imageprofile=document.getElementById("img-profile");
+      let addpostbtn=document.getElementById("add-post-btn")
+      const loginbtn= document.getElementById("log");
+      const rigesterbtn=document.getElementById("rigester");
+      const logoutbtn=document.getElementById("logout");
+      const token=localStorage.getItem("token");
+      let nameprfile=document.getElementById("name-profile");
+      
+     
+      if(token===null){
+        loginbtn.style.visibility="visible";
+        rigesterbtn.style.visibility="visible";
+        logoutbtn.style.visibility="hidden";
+        if(addpostbtn!=null){    
+              addpostbtn.style.visibility="hidden";
+        }
+        imageprofile.style.visibility="hidden";
+        nameprfile.style.visibility="hidden";
+
+      }else{
+        loginbtn.style.visibility="hidden";
+        rigesterbtn.style.visibility="hidden";
+        logoutbtn.style.visibility="visible";
+        if(addpostbtn!=null){    
+          addpostbtn.style.visibility="visible";
+
+    }
+        imageprofile.style.visibility="visible";
+        nameprfile.style.visibility="visible";
+        let user=null;
+        const storge=localStorage.getItem("user");
+        if(storge!=null){
+          user=JSON.parse(storge)
+        }
+        
+        let nameprofile=document.getElementById("name-profile").innerHTML=user.name;
+        imageprofile.src=user.profile_image;
+       
+      }
+    }
+    document.getElementById("logout").addEventListener("click",(e)=>{
+      logout()
+
+    })
+    function logout(){
+      localStorage.removeItem("token")
+      localStorage.removeItem("user")
+     
+      setupUrl()
+      showAlertsuccess("logged out",'success')
+  
+    }
+
+    function showAlertsuccess(custommessage,type){
+      const alertplaceholder=document.getElementById("success-alert")
+      const alert=(message,type)=>{
+        const wrapper=document.createElement("div");
+        wrapper.innerHTML=[
+          `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+          `<div>${message}</div>`,
+          `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>`,
+        `  </div>`
+          
+        ].join('')
+
+        alertplaceholder.append(wrapper); 
+      }
+      alert(custommessage,type)
+    }
+
+
+    function getcurrentuser(){
+    let user=null;
+    const storge=localStorage.getItem("user");
+    if(storge!=null){
+      user=JSON.parse(storge)
+    }
+    return user
+  }
+
+    function profileClicked(){
+      const user=getcurrentuser()
+      const userid=user.id 
+     window.location=`profile.html?userId=${userid}`
+    }
+
+     </script>
+</body>
+</html>
